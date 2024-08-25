@@ -18,6 +18,8 @@ RUN rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 ################################################
 # Using Bun as the package Manager
+# !you can replace with any other package manager)
+# !If changed then update the entry_point.sh script
 ################################################
 RUN npm i -g bun
 
@@ -44,8 +46,7 @@ RUN mkdir /home/node/.ssh
 COPY .ssh/id_rsa /home/node/.ssh/id_rsa
 COPY .ssh/id_rsa.pub /home/node/.ssh/id_rsa.pub
 
-RUN chmod 600 /home/node/.ssh/id_rsa &&
-    chmod 600 /home/node/.ssh/id_rsa.pub
+RUN chmod 600 /home/node/.ssh/id_rsa && chmod 600 /home/node/.ssh/id_rsa.pub
 RUN ssh-keyscan gitlab.com >>/home/node/.ssh/known_hosts
 
 RUN chown node -R /home/node
